@@ -1,3 +1,4 @@
+require "byebug"
 require_relative "piece"
 
 class Board
@@ -16,12 +17,12 @@ class Board
 	end
 
 	def set_main_pieces(color)
-		corresponding_row = { white: 0, black: -1}
-		(0...self.size).each do |col|
-			row = corresponding_row[color]
-			pos = [row, col]
-			self[pos] = Piece.new(pos, color)
-		end
+		row = color == :black ? 0 : -1
+		self[[row, 0]], self[[row, -1]] = TowerPiece.new(self, [row, 0], color), TowerPiece.new(self, [row, -1], color)
+		self[[row, 1]], self[[row, -2]] = HorsePiece.new(self, [row, 1], color), HorsePiece.new(self, [row, -2], color)
+		self[[row, 2]], self[[row, -3]] = BishopPiece.new(self, [row, 2], color), BishopPiece.new(self, [row, -3], color)
+		self[[row, 3]] = QueenPiece.new(self, [row, 3], color)
+		self[[row, 4]] = KingPiece.new(self, [row, 4], color)
 	end
 
 	def set_pawns(color)
@@ -29,7 +30,7 @@ class Board
 		(0...self.size).each do |col|
 			row = corresponding_row[color]
 			pos = [row, col]
-			self[pos] = Piece.new(pos, color)
+			self[pos] = PawnPiece.new(self, pos, color)
 		end
 	end
 

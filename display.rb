@@ -27,7 +27,7 @@ class Display
 			bg = :light_red
 			cl = :cyan
 			md = :blink
-		elsif (i + j).odd?
+		elsif (i + j).even?
 			bg = :light_white
 			cl = :black
 			md = :bold
