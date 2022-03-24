@@ -63,7 +63,8 @@ class Board
 
 	def move_piece(start_pos, end_pos)
 		raise MoveError.new "No piece at start position" if self[start_pos].is_a?(NullPiece)
-		
+		destination_piece = self[end_pos]
+		self[start_pos], self[end_pos] = self[end_pos], self[start_pos] if destination_piece.is_a?(NullPiece)
 	end
 end
 
