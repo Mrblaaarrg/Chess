@@ -60,4 +60,12 @@ class Board
 	def in_bounds?(pos)
 		pos.all? { |coord| (0...@rows.length).include?(coord) }
 	end
+
+	def move_piece(start_pos, end_pos)
+		raise MoveError.new "No piece at start position" if self[start_pos].is_a?(NullPiece)
+		
+	end
+end
+
+class MoveError < StandardError
 end
