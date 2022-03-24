@@ -8,9 +8,53 @@ class Board
 	end
 
 	def set_starting_pieces
-		(0..7).each do |col|
-			self.rows[0][col] = Piece.new
+		self.set_main_pieces(:black)
+		self.set_main_pieces(:white)
+		self.set_pawns(:black)
+		self.set_pawns(:white)
+		self.set_null_pieces
+	end
+
+	def set_main_pieces(color)
+		corresponding_row = { white: 0, black: -1}
+		(0...self.size).each do |col|
+			row = corresponding_row[color]
+			pos = [row, col]
+			self[pos] = Piece.new(pos, color)
 		end
+	end
+
+	def set_pawns(color)
+		corresponding_row = { white: 1, black: -2}
+		(0...self.size).each do |col|
+			row = corresponding_row[color]
+			pos = [row, col]
+			self[pos] = Piece.new(pos, color)
+		end
+	end
+
+	def set_null_pieces
+		(2...self.size - 2).each do |row|
+			(0...self.size).each do |col|
+				pos = [row, col]
+				self[pos] = NullPiece.new(pos)
+			end
+		end
+		true
+	end
+
+	def [](pos)
+		row, col = pos
+		rows[row][col]
+	end
+
+	def []=(pos, value)
+		row, col = pos
+		@rows[row][col] = value
+	end
+
+	def size
+		rows.count
 	end
 
 	def in_bounds?(pos)

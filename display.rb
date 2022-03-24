@@ -48,5 +48,6 @@ class Display
 		system("clear")
 		puts "Arrow keys, WASD, or vim to move, space or enter to confirm."
 		build_grid.each { |row| puts row.join }
+		true
 	end
 end

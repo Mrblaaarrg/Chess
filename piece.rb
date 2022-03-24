@@ -1,15 +1,20 @@
 class Piece
-	def initialize
-		
+	def initialize(current_position, color)
+		@current_position = current_position
+		@color = color
 	end
 
 	def to_s
-		"uwu"
+		"$"
 	end
 end
 
 class NullPiece < Piece
-	def initialize
-		"~"
+	def initialize(current_position)
+		@current_position = current_position
+	end
+
+	def to_s
+		" "
 	end
 end
