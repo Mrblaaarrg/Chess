@@ -26,9 +26,8 @@ class Board
 	end
 
 	def set_pawns(color)
-		corresponding_row = { white: 1, black: -2}
+		row = color == :black ? 1 : -2
 		(0...self.size).each do |col|
-			row = corresponding_row[color]
 			pos = [row, col]
 			self[pos] = PawnPiece.new(self, pos, color)
 		end
