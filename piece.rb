@@ -11,7 +11,13 @@ class Piece
 	end
 
 	def inspect
-		{ "board_id" => @board.object_id, "piece_type" => self.class, "color" => @color, "current_position" => @current_position }.inspect
+		{
+			"board_id" => @board.object_id,
+			"piece_type" => self.class,
+			"piece_id" => self.object_id,
+			"color" => @color,
+			"current_position" => @current_position
+		}.inspect
 	end
 end
 
