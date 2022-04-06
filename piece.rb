@@ -9,6 +9,10 @@ class Piece
 	def update_pos(new_pos)
 		@current_position = new_pos
 	end
+
+	def inspect
+		{ "board_id" => @board.object_id, "piece_type" => self.class, "color" => @color, "current_position" => @current_position }.inspect
+	end
 end
 
 class NullPiece < Piece
