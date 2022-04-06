@@ -23,20 +23,19 @@ class Display
 	end
 
 	def colors_for(i, j)
+		cl = @board[[i,j]].color
+
 		if [i, j] == @cursor_pos
 			bg = :light_red
-			cl = :cyan
 			md = :blink
 		elsif (i + j).even?
-			bg = :light_white
-			cl = :black
+			bg = :white
 			md = :bold
 		else
 			bg = :black
-			cl = :light_white
 			md = :bold
 		end
-		{ background: bg, color: cl, mode: md }
+		{ color: cl, background: bg, mode: md }
 	end
 
 	def update_pos(diff)

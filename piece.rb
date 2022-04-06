@@ -2,6 +2,9 @@ require_relative "slideable"
 require_relative "steppable"
 
 class Piece
+
+	attr_reader :color
+	
 	def initialize(board, current_position, color)
 		@board, @current_position, @color = board, current_position, color
 	end
