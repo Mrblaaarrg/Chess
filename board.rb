@@ -10,8 +10,8 @@ class Board
 
 	def set_starting_pieces
 		self.set_main_pieces(:black)
-		self.set_main_pieces(:white)
 		self.set_pawns(:black)
+		self.set_main_pieces(:white)
 		self.set_pawns(:white)
 		self.set_null_pieces
 	end
@@ -65,7 +65,11 @@ class Board
 	def move_piece(start_pos, end_pos)
 		raise MoveError.new "No piece at start position" if self[start_pos].is_a?(NullPiece)
 		destination_piece = self[end_pos]
-		self[start_pos], self[end_pos] = self[end_pos], self[start_pos] if destination_piece.is_a?(NullPiece)
+		if destination_piece.is_a?(NullPiece)
+			self[start_pos], self[end_pos] = self[end_pos], self[start_pos]
+			self[start_pos].update_pos(start_pos)	
+			self[end_pos].update_pos(end_pos)	
+		end
 	end
 end
 

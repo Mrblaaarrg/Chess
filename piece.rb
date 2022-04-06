@@ -6,8 +6,8 @@ class Piece
 		@board, @current_position, @color = board, current_position, color
 	end
 
-	def to_s
-		"$"
+	def update_pos(new_pos)
+		@current_position = new_pos
 	end
 end
 
