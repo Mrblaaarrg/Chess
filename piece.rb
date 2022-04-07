@@ -3,7 +3,7 @@ require_relative "steppable"
 
 class Piece
 
-	attr_reader :color
+	attr_reader :board, :color, :current_position
 	
 	def initialize(board, current_position, color)
 		@board, @current_position, @color = board, current_position, color
@@ -37,6 +37,10 @@ end
 class TowerPiece < Piece
 	include Slideable
 
+	def move_dirs
+		[:straight]
+	end
+
 	def to_s
 		"T"
 	end
@@ -44,6 +48,10 @@ end
 
 class BishopPiece < Piece
 	include Slideable
+
+	def move_dirs
+		[:diagonal]
+	end
 
 	def to_s
 		"B"
@@ -53,6 +61,10 @@ end
 class QueenPiece < Piece
 	include Slideable
 
+	def move_dirs
+		[:diagonal, :straight]
+	end
+
 	def to_s
 		"Q"
 	end
@@ -61,13 +73,16 @@ end
 class KingPiece < Piece
 	include Steppable
 
+	def move_dirs
+		[:diagonal, :straight]
+	end
+
 	def to_s
 		"K"
 	end
 end
 
 class HorsePiece < Piece
-	include Steppable
 
 	def to_s
 		"H"
